@@ -16,6 +16,7 @@ and this project adheres to the
 * As released by rightfold on Hackage. This entry and prior change log is
   reconstructed.
 * Support GHC versions before GHC 8.0.
+* Add support for 32-bit Windows.
 
 ## 0.2.0.0 - 2015-07-31
 
