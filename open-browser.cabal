@@ -1,41 +1,56 @@
-name:                       open-browser
-version:                    0.2.1.0
-synopsis:                   Open a web browser from Haskell.
-description:                Open a web browser from Haskell.
-                            Currently BSD, Linux, OS X and Windows are supported.
-license:                    BSD3
-license-file:               LICENSE
-author:                     rightfold
-homepage: https://github.com/rightfold/open-browser
-maintainer:                 rightfold@gmail.com
-bug-reports:                https://github.com/rightfold/open-browser/issues
-category:                   Web
-build-type:                 Simple
-cabal-version:              >=1.10
+cabal-version: 1.12
 
-tested-with: GHC >= 7.6
+-- This file has been generated from package.yaml by hpack version 0.38.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           open-browser
+version:        0.2.1.0
+synopsis:       Open a web browser from Haskell.
+description:    Open a web browser from Haskell. Currently BSD, Linux, OS X and
+                Windows are supported.
+category:       Web
+homepage:       https://github.com/rightfold/open-browser
+bug-reports:    https://github.com/rightfold/open-browser/issues
+author:         rightfold
+maintainer:     rightfold@gmail.com
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+tested-with:
+    GHC >= 7.6
 
 source-repository head
-    type:                   git
-    location:               https://github.com/rightfold/open-browser.git
+  type: git
+  location: https://github.com/rightfold/open-browser
 
 library
-    exposed-modules:        Web.Browser
-    other-modules:          Web.Browser.Linux,
-                            Web.Browser.OSX
-    hs-source-dirs:         lib
-    default-language:       Haskell2010
-    build-depends:          base >= 4 && < 5, process >= 1 && < 2
-    if os(windows)
-      build-depends:        Win32
-      other-modules:        Web.Browser.Windows
-      if arch(i386)
-        cpp-options:        "-DWINDOWS_CCONV=stdcall"
-      else
-        cpp-options:        "-DWINDOWS_CCONV=ccall"
+  exposed-modules:
+      Web.Browser
+  other-modules:
+      Web.Browser.Linux
+      Web.Browser.OSX
+  hs-source-dirs:
+      lib
+  build-depends:
+      base ==4.*
+    , process ==1.*
+  default-language: Haskell2010
+  if os(windows)
+    other-modules:
+        Web.Browser.Windows
+    build-depends:
+        Win32
+    if arch(i386)
+      cpp-options: -DWINDOWS_CCONV=stdcall
+    else
+      cpp-options: -DWINDOWS_CCONV=ccall
 
 executable example
-    main-is:                Main.hs
-    hs-source-dirs:         example
-    default-language:       Haskell2010
-    build-depends:          base >= 4 && < 5, open-browser
+  main-is: Main.hs
+  hs-source-dirs:
+      example
+  build-depends:
+      base ==4.*
+    , open-browser
+  default-language: Haskell2010

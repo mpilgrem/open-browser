@@ -1,0 +1,37 @@
+spec-version: 0.36.0
+
+name:         open-browser
+version:      0.2.1.0
+synopsis:     Open a web browser from Haskell.
+description: |
+              Open a web browser from Haskell. Currently BSD, Linux, OS X and
+              Windows are supported.
+author:       rightfold
+homepage:     https://github.com/rightfold/open-browser
+maintainer:   rightfold@gmail.com
+category:     Web
+tested-with:  GHC >= 7.6
+github:       rightfold/open-browser
+
+dependencies: base >= 4 && < 5
+
+library:
+  exposed-modules: Web.Browser
+  source-dirs: lib
+  dependencies: process >= 1 && < 2
+  when:
+  - condition: os(windows)
+    dependencies: Win32
+    other-modules: Web.Browser.Windows
+    when:
+    - condition: arch(i386)
+      then:
+        cpp-options: "-DWINDOWS_CCONV=stdcall"
+      else:
+        cpp-options: "-DWINDOWS_CCONV=ccall"
+
+executables:
+  example:
+    main: Main.hs
+    source-dirs: example
+    dependencies: open-browser
