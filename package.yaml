@@ -1,17 +1,17 @@
 spec-version: 0.36.0
 
-name:         open-browser
-version:      0.2.1.1
-synopsis:     Open a web browser from Haskell.
+name: open-browser
+version: 0.2.1.1
+synopsis: Open a web browser from Haskell.
 description: |
-              Open a web browser from Haskell. Currently BSD, Linux, OS X and
-              Windows are supported.
-author:       rightfold
-homepage:     https://github.com/rightfold/open-browser
-maintainer:   rightfold@gmail.com
-category:     Web
-tested-with:  GHC >= 7.6
-github:       rightfold/open-browser
+  Open a web browser from Haskell. Currently BSD, Linux, OS X and Windows are
+  supported.
+author: rightfold
+homepage: https://github.com/rightfold/open-browser
+maintainer: rightfold@gmail.com
+category: Web
+tested-with: GHC >= 7.6
+github: rightfold/open-browser
 
 extra-source-files:
 - CHANGELOG.md
