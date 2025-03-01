@@ -10,6 +10,9 @@ and this project adheres to the
 
 * Add `CHANGELOG.md` and `README.md`.
 * Add `stack.yaml` and `stack.yaml.lock` to package description.
+* Example executable renamed `open-browser-example` (from `example`).
+* The building of the example executable now requires Cabal flag `example`
+  (default: false).
 
 ## 0.2.1.0 - 2016-01-05
 

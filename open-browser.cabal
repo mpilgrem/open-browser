@@ -7,8 +7,8 @@ cabal-version: 1.12
 name:           open-browser
 version:        0.2.1.1
 synopsis:       Open a web browser from Haskell.
-description:    Open a web browser from Haskell. Currently BSD, Linux, OS X and
-                Windows are supported.
+description:    Open a web browser from Haskell. Currently BSD, Linux, OS X and Windows are
+                supported.
 category:       Web
 homepage:       https://github.com/rightfold/open-browser
 bug-reports:    https://github.com/rightfold/open-browser/issues
@@ -28,6 +28,11 @@ extra-source-files:
 source-repository head
   type: git
   location: https://github.com/rightfold/open-browser
+
+flag example
+  description: Build the example application
+  manual: True
+  default: False
 
 library
   exposed-modules:
@@ -51,7 +56,7 @@ library
     else
       cpp-options: -DWINDOWS_CCONV=ccall
 
-executable example
+executable open-browser-example
   main-is: Main.hs
   hs-source-dirs:
       example
@@ -59,3 +64,5 @@ executable example
       base ==4.*
     , open-browser
   default-language: Haskell2010
+  if !flag(example)
+    buildable: False
