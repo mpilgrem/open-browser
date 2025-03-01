@@ -5,4 +5,4 @@ module Main
 import Web.Browser (openBrowser)
 
 main :: IO ()
-main = openBrowser "http://haskell.org/" >>= print
+main = openBrowser "https://haskell.org/" >>= print

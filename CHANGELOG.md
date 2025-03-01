@@ -13,6 +13,7 @@ and this project adheres to the
 * Example executable renamed `open-browser-example` (from `example`).
 * The building of the example executable now requires Cabal flag `example`
   (default: false).
+* URL in example executable updated to https://www.haskell.org/.
 
 ## 0.2.1.0 - 2016-01-05
 
