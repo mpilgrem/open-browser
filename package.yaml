@@ -16,6 +16,7 @@ github: rightfold/open-browser
 extra-source-files:
 - CHANGELOG.md
 - README.md
+- lib/includes/common-include.hs
 - stack.yaml
 - stack.yaml.lock
 
@@ -29,18 +30,30 @@ dependencies: base >= 4 && < 5
 
 library:
   exposed-modules: Web.Browser
-  source-dirs: lib
-  dependencies: process >= 1 && < 2
+  dependencies: process >= 1.4.3.0 && < 2
+  include-dirs: lib/includes
+  default-extensions: CPP
   when:
   - condition: os(windows)
-    dependencies: Win32
-    other-modules: Web.Browser.Windows
-    when:
-    - condition: arch(i386)
-      then:
-        cpp-options: "-DWINDOWS_CCONV=stdcall"
-      else:
-        cpp-options: "-DWINDOWS_CCONV=ccall"
+    then:
+      source-dirs: lib/windows
+      dependencies: Win32
+    else:
+      when:
+      - condition: os(darwin)
+        then:
+          source-dirs:
+          - lib/unix-like/common
+          - lib/unix-like/open
+        else:
+          when:
+          - condition: "os(linux) || os(freebsd) || os(openbsd) || os(netbsd)"
+            then:
+              source-dirs:
+              - lib/unix-like/common
+              - lib/unix-like/xdg-open
+            else:
+              source-dirs: lib/unsupported-os
 
 executables:
   open-browser-example:
