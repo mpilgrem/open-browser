@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to the
 [Haskell Package Versioning Policy](https://pvp.haskell.org/).
 
+## Unreleased
+
+* Make operating system-related choices at compilation. The function will never
+  succeed on unsupported operating systems, rather than than throwing an
+  `ErrorCall` exception.
+* Drop support for 32-bit Windows.
+
 ## 0.2.1.1 - 2025-03-15
 
 * Add `CHANGELOG.md` and `README.md`.

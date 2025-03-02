@@ -6,9 +6,8 @@ cabal-version: 1.12
 
 name:           open-browser
 version:        0.2.1.1
-synopsis:       Open a web browser from Haskell.
-description:    Open a web browser from Haskell. Currently BSD, Linux, OS X and Windows are
-                supported.
+synopsis:       Open a web browser from Haskell
+description:    Open a web browser from Haskell. Windows, macOS, Linux and BSD are supported.
 category:       Web
 homepage:       https://github.com/mpilgrem/open-browser
 bug-reports:    https://github.com/mpilgrem/open-browser/issues
@@ -35,26 +34,46 @@ flag example
   default: False
 
 library
-  exposed-modules:
-      Web.Browser
-  other-modules:
-      Web.Browser.Linux
-      Web.Browser.OSX
   hs-source-dirs:
       lib
+  exposed-modules:
+      Web.Browser
   build-depends:
       base ==4.*
-    , process ==1.*
+    , process >=1.4.3.0 && <2
   default-language: Haskell2010
   if os(windows)
     other-modules:
-        Web.Browser.Windows
+        Web.Browser.OS
+    hs-source-dirs:
+        lib/windows
     build-depends:
-        Win32
-    if arch(i386)
-      cpp-options: -DWINDOWS_CCONV=stdcall
+        Win32 <3
+  else
+    if os(darwin)
+      other-modules:
+          Utils
+          Web.Browser.OS
+      hs-source-dirs:
+          lib/unix-like/common
+          lib/unix-like/open
+      build-depends:
+          process >=1.4.3.0 && <2
     else
-      cpp-options: -DWINDOWS_CCONV=ccall
+      if os(linux) || os(freebsd) || os(openbsd) || os(netbsd)
+        other-modules:
+            Utils
+            Web.Browser.OS
+        hs-source-dirs:
+            lib/unix-like/common
+            lib/unix-like/xdg-open
+        build-depends:
+            process >=1.4.3.0 && <2
+      else
+        other-modules:
+            Web.Browser.OS
+        hs-source-dirs:
+            lib/unsupported-os
 
 executable open-browser-example
   main-is: Main.hs

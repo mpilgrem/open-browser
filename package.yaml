@@ -2,10 +2,9 @@ spec-version: 0.36.0
 
 name: open-browser
 version: 0.2.1.1
-synopsis: Open a web browser from Haskell.
+synopsis: Open a web browser from Haskell
 description: |
-  Open a web browser from Haskell. Currently BSD, Linux, OS X and Windows are
-  supported.
+  Open a web browser from Haskell. Windows, macOS, Linux and BSD are supported.
 author: rightfold
 homepage: https://github.com/mpilgrem/open-browser
 maintainer: public@pilgrem.com
@@ -28,19 +27,32 @@ flags:
 dependencies: base >= 4 && < 5
 
 library:
-  exposed-modules: Web.Browser
   source-dirs: lib
-  dependencies: process >= 1 && < 2
+  exposed-modules: Web.Browser
+  dependencies: process >= 1.4.3.0 && < 2
   when:
   - condition: os(windows)
-    dependencies: Win32
-    other-modules: Web.Browser.Windows
-    when:
-    - condition: arch(i386)
-      then:
-        cpp-options: "-DWINDOWS_CCONV=stdcall"
-      else:
-        cpp-options: "-DWINDOWS_CCONV=ccall"
+    then:
+      source-dirs: lib/windows
+      dependencies: Win32 < 3
+    else:
+      when:
+      - condition: os(darwin)
+        then:
+          source-dirs:
+          - lib/unix-like/common
+          - lib/unix-like/open
+          dependencies: process >= 1.4.3.0 && < 2
+        else:
+          when:
+          - condition: "os(linux) || os(freebsd) || os(openbsd) || os(netbsd)"
+            then:
+              source-dirs:
+              - lib/unix-like/common
+              - lib/unix-like/xdg-open
+              dependencies: process >= 1.4.3.0 && < 2
+            else:
+              source-dirs: lib/unsupported-os
 
 executables:
   open-browser-example:

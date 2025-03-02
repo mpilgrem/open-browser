@@ -25,4 +25,4 @@ jobs:
       run: |
         set -ex
         hlint example/
-        hlint lib/ --cpp-define WINDOWS_CCONV=ccall
+        hlint lib/
