@@ -1,8 +1,8 @@
 module Main
-( main
-) where
+  ( main
+  ) where
 
-import Web.Browser (openBrowser)
+import Web.Browser ( openBrowser )
 
 main :: IO ()
 main = openBrowser "https://haskell.org/" >>= print
