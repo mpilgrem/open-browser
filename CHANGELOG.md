@@ -14,6 +14,9 @@ and this project adheres to the
 * The building of the example executable now requires Cabal flag `example`
   (default: false).
 * URL in example executable updated to https://www.haskell.org/.
+* Make operating system-related choices at compilation. The function will never
+  succeed on unsupported operating systems, rather than than throwing an
+  `ErrorCall` exception.
 
 ## 0.2.1.0 - 2016-01-05
 
