@@ -7,11 +7,11 @@ description: |
   Open a web browser from Haskell. Currently BSD, Linux, OS X and Windows are
   supported.
 author: rightfold
-homepage: https://github.com/rightfold/open-browser
-maintainer: rightfold@gmail.com
+homepage: https://github.com/mpilgrem/open-browser
+maintainer: public@pilgrem.com
 category: Web
 tested-with: GHC >= 7.6
-github: rightfold/open-browser
+github: mpilgrem/open-browser
 
 extra-source-files:
 - CHANGELOG.md
