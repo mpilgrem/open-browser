@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to the
 [Haskell Package Versioning Policy](https://pvp.haskell.org/).
 
-## Unreleased
+## 0.3.0.0 - 2025-03-16
 
 * Make operating system-related choices at compilation. The function will never
   succeed on unsupported operating systems, rather than than throwing an
