@@ -10,4 +10,8 @@ module Web.Browser.OS
 import Utils ( openBrowserWith )
 
 -- https://ss64.com/mac/open.html
+openBrowser ::
+     String
+     -- ^ URL
+  -> IO Bool
 openBrowser url = openBrowserWith "open" [url]

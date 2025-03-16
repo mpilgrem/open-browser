@@ -10,6 +10,10 @@ module Web.Browser.OS
 import Utils ( openBrowserWith )
 
 -- https://ss64.com/bash/xdg-open.html
+openBrowser ::
+     String
+     -- ^ URL
+  -> IO Bool
 openBrowser url =
   -- sh -c '...'
   --

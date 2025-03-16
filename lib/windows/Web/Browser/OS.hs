@@ -24,6 +24,10 @@ type HWND = HANDLE
 sW_SHOWNORMAL :: INT
 sW_SHOWNORMAL = 1
 
+openBrowser ::
+     String
+     -- ^ URL
+  -> IO Bool
 openBrowser url =
   withTString "open" $ \openStr ->
     withTString url $ \urlStr -> exitCodeToBool <$>
