@@ -21,6 +21,7 @@ jobs:
         - ubuntu-latest
         - windows-latest
         config:
+        - stack-ghc-8.4.4.yaml # The oldest GHC supported by Stack
         - stack-ghc-9.6.6.yaml
         - stack-ghc-9.8.4.yaml
         - stack-ghc-9.10.1.yaml

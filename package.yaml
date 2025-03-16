@@ -9,7 +9,7 @@ author: rightfold
 homepage: https://github.com/mpilgrem/open-browser
 maintainer: public@pilgrem.com
 category: Web
-tested-with: GHC >= 7.6
+tested-with: GHC >= 8.4
 github: mpilgrem/open-browser
 
 extra-source-files:
