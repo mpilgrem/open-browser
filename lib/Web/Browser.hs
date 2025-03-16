@@ -1,3 +1,14 @@
+{-|
+Module      : Web.Browser
+Description : Open a web browser from Haskell
+Copyright   : (c) rightfold 2015
+License     : BSD3
+Maintainer  : public@pilgrem.com
+
+Open a web browser from Haskell. Supported operating systems are Windows, macOS,
+Linux and BSD.
+-}
+
 module Web.Browser
   ( openBrowser
   ) where

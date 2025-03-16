@@ -22,7 +22,7 @@ openBrowser url =
   --
   -- xdg-open "$0" 2>&1 > /dev/null
   --
-  -- $0 is expanded and the double quotes ensures it is treated as a single
+  -- The $0 is expanded and the double quotes ensures it is treated as a single
   -- argument to xdg-open.
   --
   -- 2>&1 redirects standard error to standard output.
