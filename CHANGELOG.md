@@ -9,6 +9,7 @@ and this project adheres to the
 ## Unreleased
 
 * On Windows, remove unnecessary dependency on `process`.
+* Improve Haddock documentation.
 
 ## 0.3.0.0 - 2025-03-16
 

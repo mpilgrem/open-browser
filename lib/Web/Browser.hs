@@ -15,15 +15,21 @@ module Web.Browser
 
 import qualified Web.Browser.OS as OS
 
--- | Seeks to open the given URL in the user's preferred web browser. Returns
--- whether or not the operation succeeded. No checks are performed on the
--- validity of the given URL.
+-- | Seeks to open the given item. If the item is a URL or another item
+-- associated with a web browser (for example, it represents a local @.html@
+-- file), seeks to open it in the user's preferred web browser. Returns whether
+-- or not the operation succeeded.
+--
+-- No checks are performed on the nature or validity of the given item.
 --
 -- Implemented using:
 --
--- * on Windows, the \'open\' operation provided by the Win32 API;
+-- * on Windows, the \'open\' operation provided by the Win32 API. For an item
+--   that represents a file, equivalent double-clicking on the file's icon;
 --
--- * on macOS, the \'open\' application, if it is on the user's PATH; and
+-- * on macOS, the \'open\' application, if it is on the user's PATH. For an
+--   item that represents a file, equivalent to double-clicking on the file's
+--   icon; and
 --
 -- * on Linux, FreeBSD, OpenBSD or NetBSD, the \'xdg-open\' application, if it
 --   is on the user's PATH, via \'sh\' to allow the application's output to be
@@ -32,6 +38,6 @@ import qualified Web.Browser.OS as OS
 -- On other operating systems, the operation always fails.
 openBrowser ::
      String
-     -- ^ URL
+     -- ^ URL or other item to try to open
   -> IO Bool
 openBrowser = OS.openBrowser
