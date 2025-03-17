@@ -29,7 +29,6 @@ dependencies: base >= 4 && < 5
 library:
   source-dirs: lib
   exposed-modules: Web.Browser
-  dependencies: process >= 1.4.3.0 && < 2
   when:
   - condition: os(windows)
     then:

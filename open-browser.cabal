@@ -40,7 +40,6 @@ library
       Web.Browser
   build-depends:
       base ==4.*
-    , process >=1.4.3.0 && <2
   default-language: Haskell2010
   if os(windows)
     other-modules:
