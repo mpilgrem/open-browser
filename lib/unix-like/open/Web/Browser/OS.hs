@@ -7,11 +7,11 @@ module Web.Browser.OS
   ( openBrowser
   ) where
 
-import Utils ( openBrowserWith )
+import Utils ( openBrowserSilentlyWith )
 
 -- https://ss64.com/mac/open.html
 openBrowser ::
      String
      -- ^ URL
   -> IO Bool
-openBrowser url = openBrowserWith "open" [url]
+openBrowser url = openBrowserSilentlyWith "open" [url]

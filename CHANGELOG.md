@@ -8,6 +8,8 @@ and this project adheres to the
 
 ## Unreleased
 
+* On Unix-like operating systems, use Haskell to silence the opening
+  application or script, rather than the `sh` shell on Linux and BSD.
 * Improve Haddock documentation.
 
 ## 0.3.0.1 - 2025-03-17
