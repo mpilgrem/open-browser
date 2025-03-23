@@ -31,8 +31,9 @@ and this project adheres to the
 
 * As released by rightfold on Hackage. This entry and prior change log is
   reconstructed.
-* Support GHC versions before GHC 8.0.
-* Add support for 32-bit Windows.
+* Support GHC versions before GHC 8.0, by removing the Byte Order Mark from
+  source files.
+* Add support for 32-bit Windows, by using the `stdcall` calling convention.
 
 ## 0.2.0.0 - 2015-07-31
 
@@ -40,11 +41,13 @@ and this project adheres to the
 
 ## 0.1.4.0 - 2015-07-30
 
-* On Linux, silence `xdg-open`.
+* On Linux and BSD, silence `xdg-open` using the `sh` shell.
 
 ## 0.1.3.0 - 2015-07-27
 
-* Add support for BSD and Windows.
+* Add support for BSD, using the `xdg-open` application.
+* Add support for Windows, using the Win32 API and the `ccall` calling
+  convention.
 
 ## 0.1.2.0 - 2015-07-27
 
@@ -52,8 +55,9 @@ and this project adheres to the
 
 ## 0.1.1.0 - 2015-07-27
 
-* Add support for Linux.
+* Add support for Linux, using the `xdg-open` application.
+* On OS X, use the `open` application.
 
 ## 0.1.0.0 - 2015-07-25
 
-* Initial version. Only OS X supported.
+* Initial version. Only OS X supported, using `open location` in an AppleScript.
