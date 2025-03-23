@@ -1,5 +1,6 @@
 --------------------------------------------------------------------------------
--- For operating systems that use an application on the PATH to open the URL.
+-- For operating systems that use an application or a script on the PATH to open
+-- the URL.
 --------------------------------------------------------------------------------
 
 module Utils

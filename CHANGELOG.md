@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to the
 [Haskell Package Versioning Policy](https://pvp.haskell.org/).
 
+## Unreleased
+
+* Improve Haddock documentation.
+
 ## 0.3.0.1 - 2025-03-17
 
 * On Windows, remove unnecessary dependency on `process`.
@@ -41,11 +45,11 @@ and this project adheres to the
 
 ## 0.1.4.0 - 2015-07-30
 
-* On Linux and BSD, silence `xdg-open` using the `sh` shell.
+* On Linux and BSD, silence the `xdg-open` script using the `sh` shell.
 
 ## 0.1.3.0 - 2015-07-27
 
-* Add support for BSD, using the `xdg-open` application.
+* Add support for BSD, using the `xdg-open` script.
 * Add support for Windows, using the Win32 API and the `ccall` calling
   convention.
 
@@ -55,7 +59,7 @@ and this project adheres to the
 
 ## 0.1.1.0 - 2015-07-27
 
-* Add support for Linux, using the `xdg-open` application.
+* Add support for Linux, using the `xdg-open` script.
 * On OS X, use the `open` application.
 
 ## 0.1.0.0 - 2015-07-25

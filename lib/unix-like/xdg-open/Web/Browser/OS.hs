@@ -1,6 +1,5 @@
 --------------------------------------------------------------------------------
--- For Unix-like operating systems that provide the xdg-open application on the
--- PATH.
+-- For Unix-like operating systems that provide the xdg-open script on the PATH.
 --------------------------------------------------------------------------------
 
 module Web.Browser.OS
@@ -23,7 +22,7 @@ openBrowser url =
   -- xdg-open "$0" 2>&1 > /dev/null
   --
   -- The $0 is expanded and the double quotes ensures it is treated as a single
-  -- argument to xdg-open.
+  -- argument to the xdg-open script.
   --
   -- 2>&1 redirects standard error to standard output.
   --

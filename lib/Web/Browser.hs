@@ -31,8 +31,8 @@ import qualified Web.Browser.OS as OS
 --   item that represents a file, equivalent to double-clicking on the file's
 --   icon; and
 --
--- * on Linux, FreeBSD, OpenBSD or NetBSD, the \'xdg-open\' application, if it
---   is on the user's PATH, via \'sh\' to allow the application's output to be
+-- * on Linux, FreeBSD, OpenBSD or NetBSD, the \'xdg-open\' script, if it
+--   is on the user's PATH, via \'sh\' to allow the script's output to be
 --   silenced.
 --
 -- On other operating systems, the operation always fails.
