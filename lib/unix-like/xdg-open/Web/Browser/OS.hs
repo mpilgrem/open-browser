@@ -3,14 +3,15 @@
 --------------------------------------------------------------------------------
 
 module Web.Browser.OS
-  ( openBrowser
+  ( openBrowserWithExitCode
   ) where
 
-import Utils ( openBrowserSilentlyWith )
+import System.Exit ( ExitCode (..) )
+import System.Process ( readProcessWithExitCode )
 
 -- https://ss64.com/bash/xdg-open.html
-openBrowser ::
+openBrowserWithExitCode ::
      String
-     -- ^ URL
-  -> IO Bool
-openBrowser url = openBrowserSilentlyWith "xdg-open" [url]
+     -- ^ URL or other item to try to open.
+  -> IO (ExitCode, String, String)
+openBrowserWithExitCode url = readProcessWithExitCode "xdg-open" [url] ""

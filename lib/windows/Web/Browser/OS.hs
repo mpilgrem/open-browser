@@ -8,9 +8,10 @@
 --------------------------------------------------------------------------------
 
 module Web.Browser.OS
-  ( openBrowser
+  ( openBrowserWithExitCode
   ) where
 
+import System.Exit ( ExitCode (..) )
 import System.Win32.Types
          ( HANDLE, HINSTANCE, INT, LPCWSTR, handleToWord, nullPtr, withTString )
 
@@ -24,16 +25,18 @@ type HWND = HANDLE
 sW_SHOWNORMAL :: INT
 sW_SHOWNORMAL = 1
 
-openBrowser ::
+openBrowserWithExitCode ::
      String
-     -- ^ URL
-  -> IO Bool
-openBrowser url =
+     -- ^ URL or other item to try to open.
+  -> IO (ExitCode, String, String)
+openBrowserWithExitCode url =
   withTString "open" $ \openStr ->
-    withTString url $ \urlStr -> exitCodeToBool <$>
+    withTString url $ \urlStr -> exitcodeToExitCode <$>
       c_ShellExecute nullPtr openStr urlStr nullPtr nullPtr sW_SHOWNORMAL
  where
-  exitCodeToBool hinst = handleToWord hinst > 32
+  exitcodeToExitCode hinst =
+    let exitcode = fromIntegral $ handleToWord hinst
+    in  (if exitcode > 32 then ExitSuccess else ExitFailure exitcode, "", "")
 
 -- https://learn.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shellexecutew
 foreign import ccall unsafe "windows.h ShellExecuteW"

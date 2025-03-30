@@ -39,17 +39,15 @@ library:
       - condition: os(darwin)
         then:
           source-dirs:
-          - lib/unix-like/common
           - lib/unix-like/open
-          dependencies: process >= 1.4.3.0 && < 2
+          dependencies: process >= 1.2.0.0 && < 2
         else:
           when:
           - condition: "os(linux) || os(freebsd) || os(openbsd) || os(netbsd)"
             then:
               source-dirs:
-              - lib/unix-like/common
               - lib/unix-like/xdg-open
-              dependencies: process >= 1.4.3.0 && < 2
+              dependencies: process >= 1.2.0.0 && < 2
             else:
               source-dirs: lib/unsupported-os
 

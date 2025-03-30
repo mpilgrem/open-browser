@@ -51,23 +51,19 @@ library
   else
     if os(darwin)
       other-modules:
-          Utils
           Web.Browser.OS
       hs-source-dirs:
-          lib/unix-like/common
           lib/unix-like/open
       build-depends:
-          process >=1.4.3.0 && <2
+          process >=1.2.0.0 && <2
     else
       if os(linux) || os(freebsd) || os(openbsd) || os(netbsd)
         other-modules:
-            Utils
             Web.Browser.OS
         hs-source-dirs:
-            lib/unix-like/common
             lib/unix-like/xdg-open
         build-depends:
-            process >=1.4.3.0 && <2
+            process >=1.2.0.0 && <2
       else
         other-modules:
             Web.Browser.OS
