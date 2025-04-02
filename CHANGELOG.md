@@ -6,11 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to the
 [Haskell Package Versioning Policy](https://pvp.haskell.org/).
 
-## Unreleased
+## 0.4.0.0 - 2025-04-02
 
 * On Unix-like operating systems, use Haskell to silence the opening
   application or script, rather than the `sh` shell on Linux and BSD.
-* Add utility `openBrowserWithErrorCode`, to help with debugging failure.
+* Add utility `openBrowserWithExitCode`, to help with debugging failure.
 * Improve Haddock documentation.
 
 ## 0.3.0.1 - 2025-03-17

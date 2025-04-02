@@ -60,7 +60,7 @@ openBrowser url = tryOpenUrl >>= \case
 -- meaning of the exit code will depend on the operating system; for unsupported
 -- operating systems, it will be 'ExitFailure' @1@.
 --
--- @since UNRELEASED
+-- @since 0.4.0.0
 openBrowserWithExitCode ::
      Exception e
   => String
