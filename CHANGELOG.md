@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to the
 [Haskell Package Versioning Policy](https://pvp.haskell.org/).
 
+## 0.5.0.0 - 2026-06-22
+
+* Fix a regression on Linux operating systems, whereby `xdg-open` would not
+  return until the browser was closed.
+* Replace utility `openBrowserWithExitCode` with `openBrowserWithException`.
+
 ## 0.4.0.0 - 2025-04-02
 
 * On Unix-like operating systems, use Haskell to silence the opening

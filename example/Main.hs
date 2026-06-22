@@ -5,8 +5,7 @@ module Main
   ) where
 
 import Control.Exception ( Exception (..), SomeException )
-import System.Exit ( ExitCode (..) )
-import Web.Browser ( openBrowser, openBrowserWithExitCode )
+import Web.Browser ( openBrowser, openBrowserWithException )
 
 main :: IO ()
 main = do
@@ -21,14 +20,11 @@ main = do
   putStrLn "Try a bad URL:"
   tryOpenBadUrl >>= reportResult
  where
-  tryOpenGoodUrl :: IO (Either SomeException (ExitCode, String, String))
-  tryOpenGoodUrl = openBrowserWithExitCode "https://haskell.org/"
-  tryOpenBadUrl :: IO (Either SomeException (ExitCode, String, String))
-  tryOpenBadUrl = openBrowserWithExitCode "example-bad-url"
+  tryOpenGoodUrl :: IO (Maybe SomeException)
+  tryOpenGoodUrl = openBrowserWithException "https://haskell.org/"
+  tryOpenBadUrl :: IO (Maybe SomeException)
+  tryOpenBadUrl = openBrowserWithException "example-bad-url"
   reportResult = \case
-    Left e -> putStrLn $ "Exception: " <> displayException e
-    Right (ec, out, err) -> do
-      putStrLn $ "Exit code: " <> show ec
-      putStrLn $ "Standard output: " <> out
-      putStrLn $ "Standard error: " <> err
+    Just e -> putStrLn $ "Exception: " <> displayException e
+    Nothing -> putStrLn "Nothing to report"
   blankLine = putStrLn ""

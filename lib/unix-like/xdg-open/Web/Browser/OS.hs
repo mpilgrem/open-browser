@@ -3,15 +3,21 @@
 --------------------------------------------------------------------------------
 
 module Web.Browser.OS
-  ( openBrowserWithExitCode
+  ( openBrowser
   ) where
 
-import System.Exit ( ExitCode (..) )
-import System.Process ( readProcessWithExitCode )
+import           Control.Monad ( void )
+import           System.Process
+                   ( CreateProcess (..), StdStream (..), createProcess, proc )
 
 -- https://ss64.com/bash/xdg-open.html
-openBrowserWithExitCode ::
+openBrowser ::
      String
      -- ^ URL or other item to try to open.
-  -> IO (ExitCode, String, String)
-openBrowserWithExitCode url = readProcessWithExitCode "xdg-open" [url] ""
+  -> IO ()
+openBrowser url = void $ createProcess (proc "xdg-open" [url])
+  { std_in = NoStream
+  , std_out = NoStream
+  , std_err = NoStream
+  , close_fds = True
+  }

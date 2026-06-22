@@ -1,11 +1,11 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.38.0.
+-- This file has been generated from package.yaml by hpack version 0.39.6.
 --
 -- see: https://github.com/sol/hpack
 
 name:           open-browser
-version:        0.4.0.0
+version:        0.5.0.0
 synopsis:       Open a web browser from Haskell
 description:    Open a web browser from Haskell. Windows, macOS, Linux and BSD are supported.
 category:       Web
@@ -21,8 +21,6 @@ tested-with:
 extra-source-files:
     CHANGELOG.md
     README.md
-    stack.yaml
-    stack.yaml.lock
 
 source-repository head
   type: git

@@ -1,7 +1,7 @@
 spec-version: 0.36.0
 
 name: open-browser
-version: 0.4.0.0
+version: 0.5.0.0
 synopsis: Open a web browser from Haskell
 description: |
   Open a web browser from Haskell. Windows, macOS, Linux and BSD are supported.
@@ -15,8 +15,6 @@ github: mpilgrem/open-browser
 extra-source-files:
 - CHANGELOG.md
 - README.md
-- stack.yaml
-- stack.yaml.lock
 
 flags:
   example:
