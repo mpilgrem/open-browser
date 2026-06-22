@@ -7,8 +7,8 @@ on:
     - main
   workflow_dispatch:
 
-# As of 2025-03-29, ubuntu-latest and windows-latest come with Stack 3.3.1.
-# However, macos-13 and macos-latest do not come with Haskell tools.
+# As of 2026-06-20, ubuntu-latest and windows-latest come with Stack 3.9.3.
+# However, macos-latest does not come with Haskell tools.
 
 jobs:
   build:
@@ -24,12 +24,12 @@ jobs:
         - stack-ghc-8.4.4.yaml # The oldest GHC supported by Stack
         - stack-ghc-9.6.7.yaml
         - stack-ghc-9.8.4.yaml
-        - stack-ghc-9.10.1.yaml
-        - stack-ghc-9.12.2.yaml
+        - stack-ghc-9.10.3.yaml
+        - stack-ghc-9.12.4.yaml
         include:
         # macos-latest provides macOS/AArch64 (M1)
         - os: macos-latest
-          config: stack-ghc-9.8.4.yaml
+          config: stack-ghc-9.10.3.yaml
     steps:
     - name: Clone project
       uses: actions/checkout@v4
@@ -52,9 +52,9 @@ jobs:
       run: |
         set -ex
 
-        if [[ "${{ matrix.os }}" == "macos-13" || "${{ matrix.os }}" == "macos-latest" ]]
+        if [[ "${{ matrix.os }}" == "macos-latest" ]]
         then
-          # macos-13 and macos-latest do not include Haskell tools as at 2025-01-01.
+          # macos-latest does not include Haskell tools as at 2026-06-20.
           curl -sSL https://get.haskellstack.org/ | sh
         fi
 

@@ -14,11 +14,11 @@ Linux and BSD.
 module Web.Browser
   ( openBrowser
     -- * Utilities
-  , openBrowserWithExitCode
+  , openBrowserWithException
   ) where
 
 import           Control.Exception ( Exception (..), SomeException, try)
-import           System.Exit ( ExitCode (..) )
+import           Data.Maybe ( isNothing )
 import qualified Web.Browser.OS as OS
 
 -- | Seeks to open the given item, silently. If the item is a URL or another
@@ -47,23 +47,18 @@ openBrowser ::
      String
      -- ^ URL or other item to try to open.
   -> IO Bool
-openBrowser url = tryOpenUrl >>= \case
-  Left _ -> pure False
-  Right (ec, _, _) -> pure $ ec == ExitSuccess
- where
-  tryOpenUrl :: IO (Either SomeException (ExitCode, String, String))
-  tryOpenUrl = openBrowserWithExitCode url
+openBrowser url =
+  isNothing <$> (openBrowserWithException url :: IO (Maybe SomeException))
 
--- | Exported to help with debugging. As for 'openBrowser' but returns either an
--- exception or, as a triple, the 'ExitCode' of the opening mechanism and any
--- output to the standard output and standard error channels. On failure, the
--- meaning of the exit code will depend on the operating system; for unsupported
--- operating systems, it will be 'ExitFailure' @1@.
+-- | Exported to help with debugging. As for 'openBrowser' but returns 'Nothing'
+-- or 'Just' an exception.
 --
--- @since 0.4.0.0
-openBrowserWithExitCode ::
+-- @since 0.5.0.0
+openBrowserWithException ::
      Exception e
   => String
      -- ^ URL or other item to try to open.
-  -> IO (Either e (ExitCode, String, String))
-openBrowserWithExitCode url = try $ OS.openBrowserWithExitCode url
+  -> IO (Maybe e)
+openBrowserWithException url = try (OS.openBrowser url) >>= \case
+  Left e -> pure $ Just e
+  Right () -> pure Nothing

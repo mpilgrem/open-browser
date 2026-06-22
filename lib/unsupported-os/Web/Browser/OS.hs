@@ -3,15 +3,13 @@
 --------------------------------------------------------------------------------
 
 module Web.Browser.OS
-  ( openBrowserWithExitCode
+  ( openBrowser
   ) where
 
-import System.Exit ( ExitCode (..) )
-
-openBrowserWithExitCode ::
+openBrowser ::
      String
      -- ^ URL or other item to try to open.
-  -> IO (ExitCode, String, String)
+  -> IO ()
 openBrowserWithExitCode =
   -- Operation never succeeds
-  const (pure (ExitFailure 1, "", "Unsupported operating system."))
+  error "openBrowser: Unsupported operating system."
