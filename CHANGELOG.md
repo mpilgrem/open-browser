@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to the
 [Haskell Package Versioning Policy](https://pvp.haskell.org/).
 
+## 0.5.1.0 - 2026-07-02
+
+* Fix a regression on unsupported operating systems.
+
 ## 0.5.0.0 - 2026-06-22
 
 * Fix a regression on Linux operating systems, whereby `xdg-open` would not

@@ -10,6 +10,6 @@ openBrowser ::
      String
      -- ^ URL or other item to try to open.
   -> IO ()
-openBrowserWithExitCode =
+openBrowser _ =
   -- Operation never succeeds
   error "openBrowser: Unsupported operating system."
