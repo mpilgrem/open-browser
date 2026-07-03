@@ -7,8 +7,10 @@ on:
     - main
   workflow_dispatch:
 
-# As of 2026-06-20, ubuntu-latest and windows-latest come with Stack 3.9.3.
-# However, macos-latest does not come with Haskell tools.
+# As of 2026-07-03:
+# * ubuntu-latest comes with Stack 3.11.1 and GHC 9.14.1
+# * windows-latest comes with Stack 3.11.1 and GHC 9.14.1
+# * macos-latest does not come with Haskell tools
 
 jobs:
   build:
@@ -20,7 +22,7 @@ jobs:
         os:
         - ubuntu-latest
         - windows-latest
-        config:
+        snapshot:
         - stack-ghc-8.4.4.yaml # The oldest GHC supported by Stack
         - stack-ghc-9.10.3.yaml
         - stack-ghc-9.12.4.yaml
@@ -28,24 +30,24 @@ jobs:
         include:
         # macos-latest provides macOS/AArch64 (M1)
         - os: macos-latest
-          config: stack-ghc-9.10.3.yaml
+          snapshot: stack-ghc-9.10.3.yaml
     steps:
     - name: Clone project
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
     - name: Cache dependencies on Unix-like OS
       if: startsWith(runner.os, 'Linux') || startsWith(runner.os, 'macOS')
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ~/.stack
-        key: ${{ runner.os }}-${{ runner.arch }}-${{ matrix.config }}
+        key: ${{ runner.os }}-${{ runner.arch }}-${{ matrix.snapshot }}
     - name: Cache dependencies on Windows
       if: startsWith(runner.os, 'Windows')
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: |
            ~\AppData\Roaming\stack
            ~\AppData\Local\Programs\stack
-        key: ${{ runner.os }}-${{ runner.arch }}-${{ matrix.config }}
+        key: ${{ runner.os }}-${{ runner.arch }}-${{ matrix.snapshot }}
     - name: Build
       shell: bash
       run: |
@@ -53,8 +55,10 @@ jobs:
 
         if [[ "${{ matrix.os }}" == "macos-latest" ]]
         then
-          # macos-latest does not include Haskell tools as at 2026-06-20.
+          # As at 2026-07-03:
+          #
+          # * macos-latest does not include Haskell tools.
           curl -sSL https://get.haskellstack.org/ | sh
         fi
 
-        stack --stack-yaml ${{ matrix.config }} build --pedantic --flag open-browser:example --haddock --no-haddock-deps
+        stack --snapshot ${{ matrix.snapshot }} build --pedantic --flag open-browser:example --haddock --no-haddock-deps
